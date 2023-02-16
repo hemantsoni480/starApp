@@ -1,36 +1,43 @@
-package com.incedo.starApp.entities;
+package com.starapp.showlist_employees_to_manager.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-@Table(name="Project")
+
 public class Project {
 	@Id
-	int Project_id;
+	String Projectid;
 	String projectName;
 	String projectDescription;
+	  
 	   @ManyToOne
-	    Employee employee;
+	   @JsonManagedReference
+	   @JoinColumn(name="Employeeid")
+	   Employee employee;
 	Project(){ 
 		
 	}   
 	
-	public Project(int project_id, String projectName, String projectDescription, Employee employee) {
+	public Project(String projectid, String projectName, String projectDescription, Employee employee) {
 		super();
-		Project_id = project_id;
+		Projectid = projectid;
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.employee = employee;
 	}
 
-	public int getProject_id() {
-		return Project_id;
+	public String getProject_id() {
+		return Projectid;
 	}
-	public void setProject_id(int project_id) {
-		Project_id = project_id;
+	public void setProject_id(String projectid) {
+		Projectid = projectid;
 	}
 	public String getProjectName() {
 		return projectName;

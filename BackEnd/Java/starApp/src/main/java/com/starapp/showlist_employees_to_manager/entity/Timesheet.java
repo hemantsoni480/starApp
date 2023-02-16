@@ -1,31 +1,37 @@
-package com.incedo.starApp.entities;
+package com.starapp.showlist_employees_to_manager.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-@Table(name="Timesheet")
 public class Timesheet {
 	@Id
-	int timesheet_Id;
+	String timesheetId;
 	String startDate;
 	String endDate;
 	int Hours;
 	int Approval;
 	@ManyToOne
+	@JsonManagedReference
+	@JoinColumn(name="Projectid")
     Project project ;
 	@ManyToOne
+	@JsonManagedReference
+	@JoinColumn(name="Employeeid")
     Employee employee ;
 	Timesheet(){
 		
 	}
-	public int getTimesheet_Id() {
-		return timesheet_Id;
+	public String getTimesheet_Id() {
+		return timesheetId;
 	}
-	public void setTimesheet_Id(int timesheet_Id) {
-		this.timesheet_Id = timesheet_Id;
+	public void setTimesheet_Id(String timesheetId) {
+		this.timesheetId = timesheetId;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -63,10 +69,10 @@ public class Timesheet {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	public Timesheet(int timesheet_Id, String startDate, String endDate, int hours, int approval, Project project,
+	public Timesheet(String timesheet_Id, String startDate, String endDate, int hours, int approval, Project project,
 			Employee employee) {
 		super();
-		this.timesheet_Id = timesheet_Id;
+		this.timesheetId = timesheetId;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		Hours = hours;

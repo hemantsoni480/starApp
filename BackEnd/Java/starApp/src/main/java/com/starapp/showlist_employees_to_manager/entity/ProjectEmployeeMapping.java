@@ -1,18 +1,29 @@
-package com.incedo.starApp.entities;
+package com.starapp.showlist_employees_to_manager.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-@Table(name="project_Employee_Mapping")
+
 public class ProjectEmployeeMapping {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int Id;
+	
 	@ManyToOne
+	@JsonManagedReference
+	@JoinColumn(name="Employeeid")
     Employee employee;
 	@ManyToOne
+	@JsonManagedReference
+	@JoinColumn(name="Projectid")
     Project project ;
 	 int Allocation;
 	 ProjectEmployeeMapping(){

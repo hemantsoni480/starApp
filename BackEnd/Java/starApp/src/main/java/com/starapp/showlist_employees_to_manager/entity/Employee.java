@@ -1,19 +1,21 @@
-package com.incedo.starApp.entities;
+package com.starapp.showlist_employees_to_manager.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 
 @Entity
-@Table(name="Employee_master")
 public class Employee {
 	@Id
-	int Employee_id;
-	String Employee_name;
+	int Employeeid;
+	String Employeename;
 	String Email;
 	String Password;
 	String Role;
@@ -22,11 +24,11 @@ public class Employee {
 		
 	}
 	
-	public Employee(int employee_id, String employee_name, String email, String password, String role,
+	public Employee(int employeeid, String employeename, String email, String password, String role,
 			List<Project> projects) {
 		super();
-		Employee_id = employee_id;
-		Employee_name = employee_name;
+		Employeeid = employeeid;
+		Employeename = employeename;
 		Email = email;
 		Password = password;
 		Role = role;
@@ -34,16 +36,16 @@ public class Employee {
 	}
 
 	public int getEmployee_id() {
-		return Employee_id;
+		return Employeeid;
 	}
-	public void setEmployee_id(int employee_id) {
-		Employee_id = employee_id;
+	public void setEmployee_id(int employeeid) {
+		Employeeid = employeeid;
 	}
 	public String getEmployee_name() {
-		return Employee_name;
+		return Employeename;
 	}
-	public void setEmployee_name(String employee_name) {
-		Employee_name = employee_name;
+	public void setEmployee_name(String employeeName) {
+		Employeename = employeeName;
 	}
 	public String getEmail() {
 		return Email;
