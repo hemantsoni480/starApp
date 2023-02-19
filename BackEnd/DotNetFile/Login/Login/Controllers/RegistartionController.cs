@@ -24,12 +24,11 @@ namespace Login.Controllers
         }
         [HttpPost]
         [Route("Registartion")]
-        public string registration(Registartion registartion)
-        
+        public string registration(Registartion registartion)   
         {
 
             SqlConnection conn = new SqlConnection(_configuration.GetConnectionString("Logcon").ToString());
-            SqlCommand cmd = new SqlCommand( "INSERT INTO Registration(userName,Password,Email,IsActive) VALUES('"+registartion.username+"','"+registartion.Password+"','"+registartion.Email+"','"+registartion.Isactive+"' )",conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO Registration(userName,Password,Email,IsActive) VALUES('" + registartion.username+"','"+registartion.Password+"','"+registartion.Email+"','"+registartion.Isactive+"' )",conn);
             conn.Open();
             int i=cmd.ExecuteNonQuery();
             conn.Close();
@@ -53,11 +52,12 @@ namespace Login.Controllers
             SqlDataAdapter da = new SqlDataAdapter("select * from Registration where username = '" +registartion.username+ "' AND Password = '" +registartion.Password+ "' ", conn);
             DataTable dt = new DataTable();
             da.Fill(dt);
+        
             if (dt.Rows.Count>0)
             {
                 string token = CreateToken(registartion);
 
-                return Ok(token);
+                return Ok(new{token,registartion.username,registartion.Role});
             }
             else
             {

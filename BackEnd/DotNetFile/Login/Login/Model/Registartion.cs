@@ -9,5 +9,9 @@
         public string   Email { get; set; }
         public int Isactive { get; set; }
 
+        public string Role { get; set; }
+
+
+
     }
 }
